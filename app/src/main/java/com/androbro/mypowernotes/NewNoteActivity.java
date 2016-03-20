@@ -3,6 +3,8 @@ package com.androbro.mypowernotes;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,9 +12,9 @@ import android.widget.Toast;
 
 public class NewNoteActivity extends AppCompatActivity {
 
+    private Menu mymenu;
     private EditText title;
     private EditText content;
-    private Button saveBtn;
     private Button showList;
     private DBHandler dba;
 
@@ -25,7 +27,6 @@ public class NewNoteActivity extends AppCompatActivity {
 
         title = (EditText) findViewById(R.id.titleEditText);
         content = (EditText) findViewById(R.id.noteEditText);
-        saveBtn = (Button) findViewById(R.id.saveButton);
         showList = (Button) findViewById(R.id.showList);
 
         showList.setOnClickListener(new View.OnClickListener() {
@@ -35,14 +36,30 @@ public class NewNoteActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
 
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveToDB();
-                Toast.makeText(getApplicationContext(), "Your note was saved", Toast.LENGTH_LONG).show();
-            }
-        });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.newnote_menu, menu);
+        mymenu = menu;
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.save_note){
+
+            saveToDB();
+            Toast.makeText(getApplicationContext(), "Your note was saved", Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(NewNoteActivity.this, NoteListActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void saveToDB() {
