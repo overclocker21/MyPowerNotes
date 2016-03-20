@@ -62,10 +62,42 @@ public class NewNoteActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveDefaultToDB();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(NewNoteActivity.this, NoteListActivity.class);
+        startActivity(i);
+
+    }
+
     private void saveToDB() {
 
         MyNote note = new MyNote();
         note.setTitle(title.getText().toString().trim());
+        note.setContent(content.getText().toString().trim());
+
+        dba.addNotes(note);
+        dba.close();
+
+        //clear the forms once user clicks the save button
+        title.setText("");
+        content.setText("");
+
+        Intent i = new Intent(NewNoteActivity.this, NoteListActivity.class);
+        startActivity(i);
+    }
+
+    private void saveDefaultToDB() {
+
+        MyNote note = new MyNote();
+        note.setTitle("no subject");
         note.setContent(content.getText().toString().trim());
 
         dba.addNotes(note);

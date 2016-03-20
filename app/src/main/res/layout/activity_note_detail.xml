@@ -13,7 +13,7 @@
     <TextView
         android:id="@+id/detailsTitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="60dp"
         android:text="My title"
         android:textAlignment="center"
         android:textColor="#ff847f6a"
@@ -23,9 +23,10 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:layout_marginTop="30dp"
         android:id="@+id/detailsTextView"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_below="@id/detailsTitle"
         android:gravity="center"
         android:textColor="#c3767162"
         android:text="My note..."

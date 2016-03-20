@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.androbro.mypowernotes.NoteDetailActivity">
+    <item
+        android:title="Select"
+        android:icon="@android:drawable/ic_menu_share"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/sendByEmail"
+                android:title="Send note by email" />
+            <item
+                android:id="@+id/sendToDrobBox"
+                android:title="Send note to DropBox" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/delete_note"
+        android:title="Delete"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_delete"/>
+
+    <item
+        android:id="@+id/edit_note"
+        android:title="Edit"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_edit"/>
+</menu>
