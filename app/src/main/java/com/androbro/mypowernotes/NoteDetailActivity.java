@@ -23,8 +23,10 @@ public class NoteDetailActivity extends AppCompatActivity {
 
     private EditText title;
     private EditText content;
-
     private TextView editHint;
+
+    private String noteContent;
+    private String noteTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +49,13 @@ public class NoteDetailActivity extends AppCompatActivity {
         content.setKeyListener(null);
 
         Bundle extras = getIntent().getExtras();
+        noteContent = extras.getString("content");
+        noteTitle = extras.getString("title");
+
         if (extras != null) {
-            title.setText(extras.getString("title"));
+            title.setText(noteTitle);
             date.setText("Created: " + extras.getString("date"));
-            content.setText(extras.getString("content"));
+            content.setText(noteContent);
             noteId = extras.getInt("id");
         }
 
@@ -92,6 +97,13 @@ public class NoteDetailActivity extends AppCompatActivity {
             title.setKeyListener((KeyListener) title.getTag());
 
             content.setKeyListener((KeyListener) content.getTag());
+
+            return true;
+        } else if (id == R.id.sendToDrobBox){
+
+            Intent i = new Intent(NoteDetailActivity.this, DropBoxActivity.class);
+            i.putExtra("content", noteContent);
+            startActivity(i);
 
             return true;
         }
