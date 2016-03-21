@@ -9,8 +9,10 @@
         <menu>
             <item
                 android:id="@+id/sendByEmail"
-                android:title="Send note by email" />
+                android:icon="@drawable/ic_send_email"
+                android:title="Share note to..." />
             <item
+                android:icon="@drawable/ic_dropbox"
                 android:id="@+id/sendToDrobBox"
                 android:title="Send note to DropBox" />
         </menu>

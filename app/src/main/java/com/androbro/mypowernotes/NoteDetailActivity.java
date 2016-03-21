@@ -1,5 +1,7 @@
 package com.androbro.mypowernotes;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -83,10 +85,21 @@ public class NoteDetailActivity extends AppCompatActivity {
 
         if (id == R.id.delete_note){
 
-            dba.deleteNote(noteId);
-            Toast.makeText(getApplicationContext(), "Note deleted!", Toast.LENGTH_LONG).show();
+            AlertDialog.Builder adb=new AlertDialog.Builder(NoteDetailActivity.this);
+            adb.setTitle("Delete?");
+            adb.setMessage("Are you sure you want to delete this note?");
+            adb.setNegativeButton("Cancel", null);
+            adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
 
-            startActivity(new Intent(NoteDetailActivity.this, NoteListActivity.class));
+                    dba.deleteNote(noteId);
+                    Toast.makeText(getApplicationContext(), "Note deleted!", Toast.LENGTH_LONG).show();
+
+                    startActivity(new Intent(NoteDetailActivity.this, NoteListActivity.class));
+
+                }
+            });
+            adb.show();
 
             return true;
         } else if (id == R.id.edit_note){
@@ -104,6 +117,15 @@ public class NoteDetailActivity extends AppCompatActivity {
             Intent i = new Intent(NoteDetailActivity.this, DropBoxActivity.class);
             i.putExtra("content", noteContent);
             startActivity(i);
+
+            return true;
+        } else if (id == R.id.sendByEmail){
+
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, noteContent);
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
 
             return true;
         }
