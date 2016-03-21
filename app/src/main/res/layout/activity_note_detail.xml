@@ -11,35 +11,42 @@
     tools:context="com.androbro.mypowernotes.NoteDetailActivity">
 
     <TextView
-        android:id="@+id/detailsTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:text="My title"
-        android:textAlignment="center"
-        android:textColor="#ff847f6a"
-        android:textSize="15sp"
-        android:textStyle="bold"
+        android:id="@+id/editHint"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:visibility="invisible"
+        android:text="Edit note"
+        android:textSize="25sp" />
 
-    <TextView
-        android:layout_marginTop="30dp"
-        android:id="@+id/detailsTextView"
+    <EditText
+        android:id="@+id/titleEditText"
+        android:backgroundTint="#FFFFCC"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editHint"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/detailsTitle"
-        android:gravity="center"
-        android:textColor="#c3767162"
-        android:text="My note..."
-        android:textAlignment="center"
-        android:layout_width="wrap_content"
-        android:textStyle="italic"
-        android:layout_height="wrap_content" />
+        android:layout_marginTop="10dp"
+        android:background="#ffffff" />
+
+    <EditText
+        android:backgroundTint="#FFFFCC"
+        android:id="@+id/noteEditText"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_below="@+id/titleEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:gravity="start"/>
 
     <TextView
         android:id="@+id/detailsDateText"
         android:textStyle="italic"
         android:layout_marginTop="8dp"
-        android:layout_below="@id/detailsTextView"
+        android:layout_below="@id/noteEditText"
         android:text="Date here..."
         android:textSize="11sp"
         android:layout_alignParentRight="true"
@@ -47,12 +54,13 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/deleteButton"
-        android:layout_centerHorizontal="true"
-        android:text="Delete"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/detailsDateText"
+        android:visibility="invisible"
+        android:layout_marginTop="30dp"
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/noteEditText"
+        android:layout_centerHorizontal="true"
+        android:text="Save" />
 
 </RelativeLayout>

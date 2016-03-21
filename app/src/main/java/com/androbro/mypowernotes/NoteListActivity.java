@@ -138,6 +138,7 @@ public class NoteListActivity extends AppCompatActivity {
             holder.myNote = getItem(position);
             holder.mTitle.setText(holder.myNote.getTitle());
             holder.mDate.setText(holder.myNote.getRecordDate());
+            holder.setmId(holder.myNote.getItemId());
 
             final ViewHolder finalHolder = holder;
             row.setOnClickListener(new View.OnClickListener() {
@@ -149,9 +150,10 @@ public class NoteListActivity extends AppCompatActivity {
 
                     int mid = finalHolder.myNote.getItemId();
                     Intent i = new Intent(NoteListActivity.this, NoteDetailActivity.class);
+
                     i.putExtra("content", text);
-                    i.putExtra("date", dateText);
                     i.putExtra("title", title);
+                    i.putExtra("date", dateText);
                     i.putExtra("id", mid);
                     startActivity(i);
                 }
@@ -163,6 +165,15 @@ public class NoteListActivity extends AppCompatActivity {
         class ViewHolder{
             MyNote myNote;
             TextView mTitle;
+
+            public int getmId() {
+                return mId;
+            }
+
+            public void setmId(int mId) {
+                this.mId = mId;
+            }
+
             int mId;
             TextView mContent;
             TextView mDate;

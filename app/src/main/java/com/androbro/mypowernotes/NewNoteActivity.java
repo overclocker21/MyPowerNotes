@@ -51,7 +51,6 @@ public class NewNoteActivity extends AppCompatActivity {
 
         if (id == R.id.save_note){
 
-            saveToDB();
             Toast.makeText(getApplicationContext(), "Your note was saved", Toast.LENGTH_LONG).show();
 
             Intent intent = new Intent(NewNoteActivity.this, NoteListActivity.class);
@@ -65,7 +64,7 @@ public class NewNoteActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        saveDefaultToDB();
+        saveToDB();
 
     }
 
@@ -80,25 +79,11 @@ public class NewNoteActivity extends AppCompatActivity {
     private void saveToDB() {
 
         MyNote note = new MyNote();
-        note.setTitle(title.getText().toString().trim());
-        note.setContent(content.getText().toString().trim());
 
-        dba.addNotes(note);
-        dba.close();
+        //check for null title
 
-        //clear the forms once user clicks the save button
-        title.setText("");
-        content.setText("");
-
-        Intent i = new Intent(NewNoteActivity.this, NoteListActivity.class);
-        startActivity(i);
-    }
-
-    private void saveDefaultToDB() {
-
-        MyNote note = new MyNote();
-        note.setTitle("no subject");
-        note.setContent(content.getText().toString().trim());
+            note.setTitle(title.getText().toString().trim());
+            note.setContent(content.getText().toString().trim());
 
         dba.addNotes(note);
         dba.close();

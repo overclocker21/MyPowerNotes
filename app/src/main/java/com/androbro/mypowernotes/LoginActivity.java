@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText usernameMain;
+    TextView forgotPassword;
     EditText passMain;
     String usernameEntered;
     String passwordEntered;
@@ -28,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         context = LoginActivity.this;
+
+        forgotPassword = (TextView) findViewById(R.id.passForgot);
         usernameMain = (EditText) findViewById(R.id.usernameMain);
         passMain = (EditText) findViewById(R.id.passMain);
 
@@ -54,6 +58,14 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(LoginActivity.this, "Check your credentials", Toast.LENGTH_LONG).show();
                     }
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RestorePassword.class);
+                startActivity(intent);
             }
         });
     }

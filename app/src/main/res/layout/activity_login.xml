@@ -58,25 +58,13 @@
     <TextView
         android:textStyle="bold"
         android:textSize="20sp"
-        android:id="@+id/registerHere"
-        android:text="Register here"
+        android:id="@+id/passForgot"
         android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onRegisterClick" />
-
-    <TextView
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:id="@+id/textView5"
         android:text="Forgot your password?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onForgotPassClick"
-        android:layout_alignTop="@+id/registerHere"
+        android:layout_below="@+id/loginButton"
         android:layout_toLeftOf="@+id/loginButton"
         android:layout_toStartOf="@+id/loginButton" />
 
