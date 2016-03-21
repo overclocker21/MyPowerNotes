@@ -16,28 +16,29 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
         android:text="Create new note"
-        android:textSize="25sp" />
+        android:textSize="18sp" />
 
     <EditText
+        android:padding="10dp"
         android:id="@+id/titleEditText"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:background="#ffffff"
+        android:background="@drawable/rounded_edittext"
         android:hint="Enter title" />
 
     <EditText
+        android:padding="10dp"
         android:id="@+id/noteEditText"
         android:layout_width="350dp"
         android:layout_height="300dp"
         android:layout_below="@+id/titleEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:background="#ffffff"
+        android:background="@drawable/rounded_edittext"
         android:gravity="start"
         android:hint="Enter notes" />
 
