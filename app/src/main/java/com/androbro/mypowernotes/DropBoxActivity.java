@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -38,7 +37,7 @@ public class DropBoxActivity extends AppCompatActivity implements View.OnClickLi
     private Button loginButton;
     private Button uploadFileButton;
     private Button listFileButton;
-    private String messageToSave;
+
     Context context;
     String contentToSend;
 
@@ -117,10 +116,10 @@ public class DropBoxActivity extends AppCompatActivity implements View.OnClickLi
         isUserLoggedIn = userLoggedIn;
 
         uploadFileButton.setEnabled(userLoggedIn);
-        uploadFileButton.setBackgroundColor(userLoggedIn ? Color.BLUE : Color.GRAY);
+        //uploadFileButton.setBackgroundColor(userLoggedIn ? Color.BLUE : Color.GRAY);
 
         listFileButton.setEnabled(userLoggedIn);
-        listFileButton.setBackgroundColor(userLoggedIn ? Color.BLUE : Color.GRAY);
+        //listFileButton.setBackgroundColor(userLoggedIn ? Color.BLUE : Color.GRAY);
 
         loginButton.setText(userLoggedIn ? "Logout" : "Login");
 
@@ -187,8 +186,6 @@ public class DropBoxActivity extends AppCompatActivity implements View.OnClickLi
         dialogBuilder.setView(dialogView);
 
         final EditText edt = (EditText) dialogView.findViewById(R.id.edit1);
-
-        //dialogBuilder.setTitle("Please enter filename");
 
         dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {

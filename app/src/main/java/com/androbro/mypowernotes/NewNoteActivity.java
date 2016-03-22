@@ -41,9 +41,9 @@ public class NewNoteActivity extends AppCompatActivity {
         if (id == R.id.save_note){
 
             Toast.makeText(getApplicationContext(), "Your note was saved", Toast.LENGTH_LONG).show();
-
-            Intent intent = new Intent(NewNoteActivity.this, NoteListActivity.class);
-            startActivity(intent);
+            saveToDB();
+            Intent i = new Intent(NewNoteActivity.this, NoteListActivity.class);
+            startActivity(i);
             return true;
         }
 
@@ -53,13 +53,12 @@ public class NewNoteActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        saveToDB();
-
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        saveToDB();
         Intent i = new Intent(NewNoteActivity.this, NoteListActivity.class);
         startActivity(i);
 
@@ -81,7 +80,5 @@ public class NewNoteActivity extends AppCompatActivity {
         title.setText("");
         content.setText("");
 
-        Intent i = new Intent(NewNoteActivity.this, NoteListActivity.class);
-        startActivity(i);
     }
 }
