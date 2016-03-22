@@ -9,7 +9,6 @@ import android.text.method.KeyListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,10 +17,7 @@ public class NoteDetailActivity extends AppCompatActivity {
 
     private Menu mymenu;
     private DBHandler dba;
-    private Button saveButton;
     private int noteId;
-
-    private TextView date;
 
     private EditText title;
     private EditText content;
@@ -37,9 +33,7 @@ public class NoteDetailActivity extends AppCompatActivity {
 
         editHint = (TextView) findViewById(R.id.editHint);
 
-        saveButton = (Button) findViewById(R.id.saveButton);
         title = (EditText) findViewById(R.id.titleEditText);
-        date = (TextView) findViewById(R.id.detailsDateText);
         content = (EditText) findViewById(R.id.noteEditText);
 
         dba = new DBHandler(getApplicationContext());
@@ -56,20 +50,9 @@ public class NoteDetailActivity extends AppCompatActivity {
 
         if (extras != null) {
             title.setText(noteTitle);
-            date.setText("Created: " + extras.getString("date"));
             content.setText(noteContent);
             noteId = extras.getInt("id");
         }
-
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            saveToDB();
-
-
-            }
-        });
     }
 
     @Override
@@ -105,7 +88,6 @@ public class NoteDetailActivity extends AppCompatActivity {
         } else if (id == R.id.edit_note){
 
             editHint.setVisibility(View.VISIBLE);
-            saveButton.setVisibility(View.VISIBLE);
 
             title.setKeyListener((KeyListener) title.getTag());
 
@@ -133,6 +115,20 @@ public class NoteDetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveToDB();
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent i = new Intent(NoteDetailActivity.this, NoteListActivity.class);
+        startActivity(i);
+
+    }
+
     private void saveToDB() {
         MyNote note = new MyNote();
         note.setTitle(title.getText().toString().trim());
@@ -140,11 +136,6 @@ public class NoteDetailActivity extends AppCompatActivity {
 
             dba.updateNotes(note, noteId);
             dba.close();
-
-            Toast.makeText(getApplicationContext(), "Note updated!", Toast.LENGTH_LONG).show();
-
-            Intent i = new Intent(NoteDetailActivity.this, NoteListActivity.class);
-            startActivity(i);
 
     }
 

@@ -4,8 +4,8 @@
     tools:context="com.androbro.mypowernotes.NoteListActivity">
     <item
         android:id="@+id/add_note"
-        android:title="Refresh"
+        android:title="New Note"
         android:orderInCategory="100"
         app:showAsAction="always"
-        android:icon="@android:drawable/ic_input_add"/>
+        android:icon="@drawable/ic_add_btn"/>
 </menu>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFF99"
+    android:background="@drawable/sears_tower"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -11,13 +11,14 @@
     tools:context="com.androbro.mypowernotes.NoteDetailActivity">
 
     <TextView
+        android:textColor="#ffffff"
         android:id="@+id/editHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
 
-        android:visibility="visible"
+        android:visibility="invisible"
         android:text="Edit note"
         android:textSize="18sp" />
 
@@ -33,34 +34,15 @@
 
     <EditText
         android:padding="10dp"
+
         android:id="@+id/noteEditText"
         android:layout_width="350dp"
-        android:layout_height="250dp"
+        android:layout_height="fill_parent"
         android:layout_below="@+id/titleEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_edittext"
         android:gravity="start"/>
 
-    <TextView
-        android:id="@+id/detailsDateText"
-        android:textStyle="italic"
-        android:layout_marginTop="8dp"
-        android:layout_below="@id/noteEditText"
-        android:text="Date here..."
-        android:textSize="11sp"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:visibility="invisible"
-        android:layout_marginTop="30dp"
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/noteEditText"
-        android:layout_centerHorizontal="true"
-        android:text="Save" />
 
 </RelativeLayout>

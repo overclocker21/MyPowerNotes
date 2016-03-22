@@ -1,12 +1,10 @@
 package com.androbro.mypowernotes;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,7 +13,6 @@ public class NewNoteActivity extends AppCompatActivity {
     private Menu mymenu;
     private EditText title;
     private EditText content;
-    private Button showList;
     private DBHandler dba;
 
     @Override
@@ -27,15 +24,7 @@ public class NewNoteActivity extends AppCompatActivity {
 
         title = (EditText) findViewById(R.id.titleEditText);
         content = (EditText) findViewById(R.id.noteEditText);
-        showList = (Button) findViewById(R.id.showList);
 
-        showList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(NewNoteActivity.this, NoteListActivity.class);
-                startActivity(i);
-            }
-        });
     }
 
     @Override

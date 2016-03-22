@@ -188,7 +188,7 @@ public class DropBoxActivity extends AppCompatActivity implements View.OnClickLi
 
         final EditText edt = (EditText) dialogView.findViewById(R.id.edit1);
 
-        dialogBuilder.setTitle("Please enter filename");
+        //dialogBuilder.setTitle("Please enter filename");
 
         dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
