@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
 
                     } else {
-                        Toast.makeText(LoginActivity.this, "Check your credentials", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Check your credentials", Toast.LENGTH_SHORT).show();
                     }
             }
         });

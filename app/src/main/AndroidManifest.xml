@@ -18,13 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".LoginActivity">
         </activity>
-        <activity android:name=".NoteListActivity" >
+        <activity android:name=".NoteListActivity">
         </activity>
-        <activity android:name=".NoteDetailActivity" >
+        <activity android:name=".NoteDetailActivity">
         </activity>
-        <activity android:name=".NewNoteActivity" >
+        <activity android:name=".NewNoteActivity">
         </activity>
         <activity android:name=".RestorePassword" >
         </activity>
