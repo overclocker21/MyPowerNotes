@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     String usernameEntered;
     String passwordEntered;
     SharedPreferences myPrefs;
+    CheckBox staySignedIn;
     String username;
     String password;
     Button login;
@@ -31,11 +34,24 @@ public class LoginActivity extends AppCompatActivity {
 
         context = LoginActivity.this;
 
+        staySignedIn = (CheckBox) findViewById(R.id.staySignedIn);
         forgotPassword = (TextView) findViewById(R.id.passForgot);
         usernameMain = (EditText) findViewById(R.id.usernameMain);
         passMain = (EditText) findViewById(R.id.passMain);
 
         myPrefs = context.getSharedPreferences("prefs", MODE_PRIVATE);
+
+        boolean isStaySignedInChecked = myPrefs.getBoolean("stay", false);
+
+        Log.i("BooleanStay", "" + isStaySignedInChecked);
+
+        if (isStaySignedInChecked){
+
+            Intent intent = new Intent(LoginActivity.this, NoteListActivity.class);
+            startActivity(intent);
+
+        }
+
         username = myPrefs.getString("namestr", null);
         password = myPrefs.getString("pass1str", null);
 
@@ -45,6 +61,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                myPrefs = context.getSharedPreferences("prefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = myPrefs.edit();
+
                 usernameEntered = usernameMain.getText().toString();
                 passwordEntered = passMain.getText().toString();
 
@@ -52,6 +71,13 @@ public class LoginActivity extends AppCompatActivity {
 
                         usernameMain.setText("");
                         passMain.setText("");
+
+                        if (staySignedIn.isChecked()){
+                            editor.putBoolean("stay", true);
+                            editor.apply();
+                        }
+
+                        Log.i("BooleanStayafterPressed", "" + staySignedIn.isChecked());
 
                         Intent intent = new Intent(LoginActivity.this, NoteListActivity.class);
                         startActivity(intent);

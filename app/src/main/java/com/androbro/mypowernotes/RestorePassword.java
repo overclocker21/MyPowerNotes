@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +29,7 @@ public class RestorePassword extends AppCompatActivity {
     ProgressDialog pdialog;
     Context context;
     SharedPreferences myPrefs;
+    String username;
     String password;
     String email;
     EditText emailField;
@@ -47,10 +47,9 @@ public class RestorePassword extends AppCompatActivity {
         sendEmailBtn = (Button) findViewById(R.id.sendEmail);
 
         myPrefs = context.getSharedPreferences("prefs", MODE_PRIVATE);
+        username = myPrefs.getString("namestr", "");
         password = myPrefs.getString("pass1str", "");
         email = myPrefs.getString("emailstr", "");
-
-
 
         sendEmailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,9 +57,6 @@ public class RestorePassword extends AppCompatActivity {
 
                 userEnteredEmail = emailField.getText().toString();
                 if (!userEnteredEmail.equals(email)){
-
-                    Log.i("USER-SHARED", ""+email);
-                    Log.i("USER-ENTERED", ""+userEnteredEmail);
 
                     Toast.makeText(context, "Wrong email, check it again...", Toast.LENGTH_LONG).show();
                 } else {
@@ -98,7 +94,7 @@ public class RestorePassword extends AppCompatActivity {
                 message.setFrom(new InternetAddress("vectraincorporated@gmail.com"));
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(userEnteredEmail));
                 message.setSubject("PowerNote password restoration");
-                message.setContent(password, "text/html; charset=utf-8");
+                message.setContent("Username: " + username + " , password: " + password, "text/html; charset=utf-8");
                 Transport.send(message);
             } catch(MessagingException e) {
                 e.printStackTrace();

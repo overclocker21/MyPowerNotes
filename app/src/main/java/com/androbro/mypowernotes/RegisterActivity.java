@@ -20,6 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button registerBtn;
     SharedPreferences myPrefs;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,7 +1,9 @@
 package com.androbro.mypowernotes;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -12,12 +14,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class NoteListActivity extends AppCompatActivity {
 
     private Menu mymenu;
+    Context context;
+    SharedPreferences myPrefs;
     private DBHandler dba;
     private ArrayList<MyNote> dbNotes = new ArrayList<>();
     private NoteAdapter noteAdapter;
@@ -27,6 +32,8 @@ public class NoteListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_list);
+
+        context = NoteListActivity.this;
 
         listView = (ListView) findViewById(R.id.list);
         //fetching data to DB that we previuously saved
@@ -76,6 +83,16 @@ public class NoteListActivity extends AppCompatActivity {
 
         if (id == R.id.add_note){
             Intent intent = new Intent(NoteListActivity.this, NewNoteActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.sign_out){
+
+            myPrefs = context.getSharedPreferences("prefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = myPrefs.edit();
+            editor.putBoolean("stay", false);
+            editor.apply();
+
+            Intent intent = new Intent(NoteListActivity.this, LoginActivity.class);
             startActivity(intent);
             return true;
         }
@@ -182,8 +199,7 @@ public class NoteListActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(NoteListActivity.this, LoginActivity.class);
-        startActivity(i);
+        Toast.makeText(context, "Press Logout to exit", Toast.LENGTH_SHORT).show();
     }
 
 }
