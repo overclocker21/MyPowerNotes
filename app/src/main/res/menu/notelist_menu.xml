@@ -8,9 +8,19 @@
         android:orderInCategory="100"
         app:showAsAction="always" />
     <item
-        android:id="@+id/add_note"
-        android:title="New Note"
+        android:title="Add note"
+        android:icon="@drawable/ic_add_btn"
         android:orderInCategory="100"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_add_btn"/>
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/add_note"
+                android:title="New Note"
+                android:icon="@drawable/ic_new_note"/>
+            <item
+                android:icon="@drawable/ic_dropbox"
+                android:id="@+id/new_draw_note"
+                android:title="New Drawing Note" />
+        </menu>
+    </item>
 </menu>

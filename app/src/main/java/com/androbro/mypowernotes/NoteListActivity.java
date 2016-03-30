@@ -95,6 +95,10 @@ public class NoteListActivity extends AppCompatActivity {
             Intent intent = new Intent(NoteListActivity.this, LoginActivity.class);
             startActivity(intent);
             return true;
+        } else if (id == R.id.new_draw_note){
+            Intent intent = new Intent(NoteListActivity.this, DrawingActivity.class);
+            startActivity(intent);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
