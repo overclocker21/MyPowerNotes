@@ -111,7 +111,7 @@ public class DrawingView extends View {
         else{
             //pattern
             int patternID = getResources().getIdentifier(
-                    newColor, "drawable", "com.example.drawingfun");
+                    newColor, "drawable", "com.androbro.mypowernotes");
             //decode
             Bitmap patternBMP = BitmapFactory.decodeResource(getResources(), patternID);
             //create shader
