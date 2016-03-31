@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/new_btn"
+        android:icon="@drawable/new_pic"
+        android:title="New drawing" />
+    <item
+        android:id="@+id/draw_btn"
+        android:icon="@drawable/draw_btn"
+        android:title="Brush thickness" />
+    <item
+        android:id="@+id/erase_btn"
+        android:icon="@drawable/erase_btn"
+        android:title="Erase thickness" />
+    <item
+        android:id="@+id/opacity_btn"
+        android:icon="@drawable/ic_opacity"
+        android:title="Opacity" />
+    <item
+        android:id="@+id/save_btn"
+        android:icon="@drawable/save_btn"
+        android:title="Save drawing" />
+
+    <item
+        android:id="@+id/pick_color"
+        android:icon="@drawable/save_btn"
+        android:title="Pick drawing color" />
+    </group>
+
+</menu>

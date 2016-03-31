@@ -16,7 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * Created by user on 3/29/2016.
+ * Created by user on 3/31/2016.
  */
 public class DrawingView extends View {
 
@@ -111,7 +111,7 @@ public class DrawingView extends View {
         else{
             //pattern
             int patternID = getResources().getIdentifier(
-                    newColor, "drawable", "com.androbro.mypowernotes");
+                    newColor, "drawable", "com.androbro.navigationdrawerproject");
             //decode
             Bitmap patternBMP = BitmapFactory.decodeResource(getResources(), patternID);
             //create shader
