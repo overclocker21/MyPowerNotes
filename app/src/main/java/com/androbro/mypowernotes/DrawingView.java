@@ -20,6 +20,8 @@ import android.view.View;
  */
 public class DrawingView extends View {
 
+    Context context;
+
     //drawing path
     private Path drawPath;
     //drawing and canvas paint
@@ -28,6 +30,7 @@ public class DrawingView extends View {
     private int paintColor = 0xFF660000, paintAlpha = 255;
     //canvas
     private Canvas drawCanvas;
+
     //canvas bitmap
     private Bitmap canvasBitmap;
     //brush sizes
@@ -35,16 +38,22 @@ public class DrawingView extends View {
     //erase flag
     private boolean erase=false;
 
+
     public DrawingView(Context context, AttributeSet attrs){
         super(context, attrs);
+
         setupDrawing();
+
     }
+
+
+
 
     //setup drawing
     private void setupDrawing(){
-
         //prepare for drawing and setup paint stroke properties
-        brushSize = getResources().getInteger(R.integer.medium_size);
+
+        brushSize = getResources().getInteger(R.integer.small_size);
         lastBrushSize = brushSize;
         drawPath = new Path();
         drawPaint = new Paint();
@@ -57,12 +66,22 @@ public class DrawingView extends View {
         canvasPaint = new Paint(Paint.DITHER_FLAG);
     }
 
+
     //size assigned to view
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        canvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+
+
+        if (canvasBitmap == null){
+            canvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        } else{
+            Bitmap temporary = Bitmap.createScaledBitmap(canvasBitmap, w, h, true);
+            canvasBitmap = temporary;
+        }
         drawCanvas = new Canvas(canvasBitmap);
+
+
     }
 
     //draw the view - will be called after touch event
@@ -75,9 +94,27 @@ public class DrawingView extends View {
     //register user touches as drawing action
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
+        getParent().requestDisallowInterceptTouchEvent(true);
+        //respond to down, move and up events
+        switch (event.getAction()) {
+
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
+            case MotionEvent.ACTION_UP:
+                performTouchEvent(event);
+
+        }
+        //redraw
+        invalidate();
+
+        return true;
+
+    }
+
+    private void performTouchEvent(MotionEvent event) {
         float touchX = event.getX();
         float touchY = event.getY();
-        //respond to down, move and up events
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 drawPath.moveTo(touchX, touchY);
@@ -90,14 +127,11 @@ public class DrawingView extends View {
                 drawCanvas.drawPath(drawPath, drawPaint);
                 drawPath.reset();
                 break;
-            default:
-                return false;
         }
-        //redraw
         invalidate();
-        return true;
 
     }
+
 
     //update color
     public void setColor(String newColor){
@@ -165,4 +199,5 @@ public class DrawingView extends View {
         drawPaint.setColor(paintColor);
         drawPaint.setAlpha(paintAlpha);
     }
+
 }

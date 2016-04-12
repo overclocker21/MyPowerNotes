@@ -32,7 +32,6 @@ import java.util.UUID;
 public class DrawingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
     //custom drawing view
     private DrawingView drawView;
     private ImageButton currPaint;
@@ -48,6 +47,7 @@ public class DrawingActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -58,6 +58,7 @@ public class DrawingActivity extends AppCompatActivity
 
         //get drawing view
         drawView = (DrawingView)findViewById(R.id.drawing);
+        drawView.setId(R.id.drawing);
 
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogView = inflater.inflate(R.layout.color_picker, null);
@@ -92,6 +93,7 @@ public class DrawingActivity extends AppCompatActivity
             }
         }
     }
+
 
     @Override
     public void onBackPressed() {
@@ -483,4 +485,6 @@ public class DrawingActivity extends AppCompatActivity
             }
         }
     }
+
+
 }
